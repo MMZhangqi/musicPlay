@@ -46,8 +46,7 @@ const actions = {
     },
 
     // --------------- 设置全部歌曲到当前歌曲列表 ---------------
-    setAllPlay({ commit, state }, list){
-
+    addAllPlay({ commit }, list){
         // 设置当前播放歌曲列表
         commit('setSequenceList', list)
         // 设置源歌曲列表
@@ -73,6 +72,7 @@ const actions = {
         }
         // 当前播放歌曲不变
         const index = findIndex(state.sequenceList, currentSong)
+        console.log(index);
         // 设置当前歌曲下标
         commit('setCurrentIndex', index)
         // 设置播放模式
@@ -135,10 +135,11 @@ function findIndex(list, song){
 }
 
 function shuffle(list){
-    const arr = list.splice()
+    const arr = list.slice()
     arr.sort((a, b) =>{
         return Math.random() - 0.5
     })
+    return arr
 }
 
 export default actions

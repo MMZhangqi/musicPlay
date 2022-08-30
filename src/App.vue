@@ -1,14 +1,16 @@
 <template>
-  <MyHeader></MyHeader>
   <nav>
+    <MyHeader></MyHeader>
     <MyTabBar></MyTabBar>
+    <router-view></router-view>
   </nav>
-  <router-view/>
+  <MyPlayer></MyPlayer>
 </template>
 
 <script setup>
 import MyHeader from './components/Header.vue'
 import MyTabBar from './components/Tabbar.vue'
+import MyPlayer from './components/Player'
 </script>
 
 <style lang="scss">

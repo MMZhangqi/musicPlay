@@ -11,7 +11,7 @@
             <div class="play-btn-wrapper" :style="playBtnStyle">
                 <div class="play-btn" v-if="songs.length">
                     <i class="icon-play"></i>
-                    <div class="text">顺序播放全部歌曲</div>
+                    <div class="text" @click="addAll">顺序播放全部歌曲</div>
                 </div>
             </div>
             <!-- 模糊遮罩 -->
@@ -27,10 +27,13 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "@vue/runtime-core"
+import { computed, onMounted, ref } from "vue"
 import {useRouter} from 'vue-router'
 import MySongList from '@/components/common/SongList'
 import MyScroll from '@/components/common/Scroll'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 const scrollY = ref(0)
 const imageHeight = ref(0)
@@ -116,6 +119,10 @@ onMounted(() => {
     imageHeight.value = imageRef.value.clientHeight;
     maxTranslateY.value = imageHeight.value -40
 })
+
+function addAll(){
+    store.dispatch("addAllPlay", props.songs)
+}
 </script>
 
 <style lang="scss" scoped>

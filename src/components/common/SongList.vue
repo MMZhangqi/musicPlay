@@ -1,6 +1,6 @@
 <template>
     <ul class="song-list">
-        <li class="item" v-for="(item,index) in songs" :key="item.id">
+        <li class="item" v-for="(item) in songs" :key="item" @click="addOne(item)">
             <div class="content">
                 <h2 class="name">{{item.name}}</h2>
                 <p class="desc">{{handle(item)}}</p>
@@ -10,8 +10,9 @@
 </template>
 
 <script setup> 
-import { onMounted, ref } from "@vue/runtime-core"
-
+import { onMounted, ref } from "vue"
+import { useStore } from 'vuex'
+const store = useStore()
 const props = defineProps({
     songs: {
         type: Array,
@@ -25,9 +26,9 @@ function handle(item){
     }).join("-")
 }
 
-onMounted(() =>{
-
-})
+function addOne(item){
+    store.dispatch('addOnePlay', [item])
+}
 </script>
 
 <style lang="scss" scoped>

@@ -25,10 +25,12 @@ const mutations = {
     },
     // 设置喜欢列表
     setFavoriteList(state, list){
-        state.favoriteList = favoriteList
+        state.favoriteList = list
     },
     // 设置历史播放记录
     setPlayHistory(state, list){
         state.playHistory = list
     }
 }
+
+export default mutations
